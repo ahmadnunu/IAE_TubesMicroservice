@@ -14,4 +14,9 @@ class Payment extends Model
         'payment_status',
         'payment_date'
     ];
+
+    protected $dispatchesEvents = [
+        'created' => \App\Events\PaymentCreated::class,
+        'updated' => \App\Events\PaymentCreated::class,
+    ];
 }

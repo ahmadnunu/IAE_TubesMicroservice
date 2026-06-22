@@ -197,7 +197,7 @@ class OrderController extends Controller
         ]);
 
 
-        OrderCreated::dispatch($order);
+        // Event OrderCreated sekarang otomatis dipicu oleh Model Order
 
         return response()->json([
             'order_id' => $order->id,

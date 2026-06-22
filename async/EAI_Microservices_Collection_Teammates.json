@@ -6,6 +6,42 @@
   },
   "item": [
     {
+      "name": "\ud83c\udf1f SUPERGRAPH (Hasura API Gateway)",
+      "item": [
+        {
+          "name": "Query: Get Data From All Services",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-hasura-admin-secret",
+                "value": "my-super-secret-key",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query SupergraphQuery {\n  user_api {\n    users {\n      id\n      name\n      email\n    }\n  }\n  product_api {\n    products {\n      id\n      name\n      price\n    }\n  }\n  order_api {\n    orders {\n      id\n      total_price\n      status\n    }\n  }\n  \n}",
+                "variables": ""
+              }
+            },
+            "url": {
+              "raw": "http://192.168.1.246:8085/v1/graphql",
+              "host": [
+                "192.168.1.246"
+              ],
+              "port": "8085",
+              "path": [
+                "v1",
+                "graphql"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
       "name": "1. User Service (Port 8001)",
       "item": [
         {
@@ -951,7 +987,7 @@
       ]
     },
     {
-      "name": "5. Menu Service (Hasura - Port 8080)",
+      "name": "5. Menu Service (Hasura - Port 8085)",
       "item": [
         {
           "name": "Query: Get All Menus",
@@ -972,12 +1008,12 @@
               }
             },
             "url": {
-              "raw": "http://192.168.1.246:8080/v1/graphql",
+              "raw": "http://192.168.1.246:8085/v1/graphql",
               "protocol": "http",
               "host": [
                 "192.168.1.246"
               ],
-              "port": "8080",
+              "port": "8085",
               "path": [
                 "v1",
                 "graphql"
@@ -1004,12 +1040,12 @@
               }
             },
             "url": {
-              "raw": "http://192.168.1.246:8080/v1/graphql",
+              "raw": "http://192.168.1.246:8085/v1/graphql",
               "protocol": "http",
               "host": [
                 "192.168.1.246"
               ],
-              "port": "8080",
+              "port": "8085",
               "path": [
                 "v1",
                 "graphql"

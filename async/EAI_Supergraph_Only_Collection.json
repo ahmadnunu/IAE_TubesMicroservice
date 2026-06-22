@@ -1,0 +1,45 @@
+{
+  "info": {
+    "name": "EAI Final Project - SUPERGRAPH ONLY",
+    "description": "Collection khusus untuk demonstrasi Hasura API Gateway (Supergraph) yang menggabungkan 5 microservices.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "\ud83c\udf1f SUPERGRAPH (Hasura API Gateway)",
+      "item": [
+        {
+          "name": "Query: Get Data From All Services",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-hasura-admin-secret",
+                "value": "my-super-secret-key",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query SupergraphQuery {\n  user_api {\n    users {\n      id\n      name\n      email\n    }\n  }\n  product_api {\n    products {\n      id\n      name\n      price\n    }\n  }\n  order_api {\n    orders {\n      id\n      total_price\n      status\n    }\n  }\n  \n}",
+                "variables": ""
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8085/v1/graphql",
+              "host": [
+                "localhost"
+              ],
+              "port": "8085",
+              "path": [
+                "v1",
+                "graphql"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

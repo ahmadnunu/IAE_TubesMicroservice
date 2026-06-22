@@ -11,6 +11,10 @@ class Order extends Model
 {
     use HasFactory;
 
+    protected $dispatchesEvents = [
+        'created' => \App\Events\OrderCreated::class,
+    ];
+
     protected $fillable = [
         'user_id',
         'product_id',

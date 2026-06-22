@@ -27,10 +27,9 @@ class RabbitMQService
         }
     }
 
-    public function publish($message)
+    public function publish($message, $routingKey = 'order.created')
     {
         $exchangeName = 'order_exchange';
-        $routingKey = 'order_created';
 
         $this->channel->exchange_declare($exchangeName, 'direct', false, true, false);
 
@@ -41,7 +40,7 @@ class RabbitMQService
 
         $this->channel->basic_publish($msg, $exchangeName, $routingKey);
 
-        Log::info(" [x] Sent message to RabbitMQ: '{$message}'");
+        Log::info(" [x] Sent message to RabbitMQ [{$routingKey}]: '{$message}'");
     }
 
     public function __destruct()
