@@ -1,0 +1,449 @@
+{
+  "info": {
+    "name": "EAI Final Project - Full CRUD (REST & GraphQL)",
+    "description": "Collection lengkap berisi semua operasi CRUD untuk semua microservices via REST API dan GraphQL.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. User Service (Port 8001)",
+      "item": [
+        {
+          "name": "REST API",
+          "item": [
+            {
+              "name": "GET All Users",
+              "request": {
+                "method": "GET",
+                "url": {"raw": "http://localhost:8001/api/users","host": ["localhost"],"port": "8001","path": ["api","users"]}
+              }
+            },
+            {
+              "name": "GET User by ID",
+              "request": {
+                "method": "GET",
+                "url": {"raw": "http://localhost:8001/api/users/11","host": ["localhost"],"port": "8001","path": ["api","users","11"]}
+              }
+            },
+            {
+              "name": "POST Create User",
+              "request": {
+                "method": "POST",
+                "header": [{"key": "Content-Type","value": "application/json"},{"key": "Accept","value": "application/json"}],
+                "body": {"mode": "raw","raw": "{\n    \"name\": \"Ahmad Nunu\",\n    \"email\": \"ahmad.nunu@example.com\",\n    \"password\": \"password123\",\n    \"password_confirmation\": \"password123\"\n}"},
+                "url": {"raw": "http://localhost:8001/api/users","host": ["localhost"],"port": "8001","path": ["api","users"]}
+              }
+            },
+            {
+              "name": "PUT Update User",
+              "request": {
+                "method": "PUT",
+                "header": [{"key": "Content-Type","value": "application/json"},{"key": "Accept","value": "application/json"}],
+                "body": {"mode": "raw","raw": "{\n    \"name\": \"Ahmad Nunu Updated\",\n    \"email\": \"ahmad.nunu.updated@example.com\"\n}"},
+                "url": {"raw": "http://localhost:8001/api/users/11","host": ["localhost"],"port": "8001","path": ["api","users","11"]}
+              }
+            },
+            {
+              "name": "DELETE User",
+              "request": {
+                "method": "DELETE",
+                "url": {"raw": "http://localhost:8001/api/users/11","host": ["localhost"],"port": "8001","path": ["api","users","11"]}
+              }
+            }
+          ]
+        },
+        {
+          "name": "GraphQL",
+          "item": [
+            {
+              "name": "Query: Get All Users",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {"mode": "graphql","graphql": {"query": "query {\n  users {\n    id\n    name\n    email\n  }\n}"}},
+                "url": {"raw": "http://localhost:8001/graphql","host": ["localhost"],"port": "8001","path": ["graphql"]}
+              }
+            },
+            {
+              "name": "Query: Get User by ID",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {"mode": "graphql","graphql": {"query": "query {\n  user(id: 11) {\n    id\n    name\n    email\n  }\n}"}},
+                "url": {"raw": "http://localhost:8001/graphql","host": ["localhost"],"port": "8001","path": ["graphql"]}
+              }
+            },
+            {
+              "name": "Mutation: Create User",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {"mode": "graphql","graphql": {"query": "mutation {\n  createUser(\n    name: \"Budi\"\n    email: \"budi@example.com\"\n    password: \"rahasia123\"\n  ) {\n    id\n    name\n    email\n  }\n}"}},
+                "url": {"raw": "http://localhost:8001/graphql","host": ["localhost"],"port": "8001","path": ["graphql"]}
+              }
+            },
+            {
+              "name": "Mutation: Update User",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {"mode": "graphql","graphql": {"query": "mutation {\n  updateUser(\n    id: 11\n    name: \"Budi Santoso\"\n  ) {\n    id\n    name\n    email\n  }\n}"}},
+                "url": {"raw": "http://localhost:8001/graphql","host": ["localhost"],"port": "8001","path": ["graphql"]}
+              }
+            },
+            {
+              "name": "Mutation: Delete User",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {"mode": "graphql","graphql": {"query": "mutation {\n  deleteUser(id: 11) {\n    id\n    name\n  }\n}"}},
+                "url": {"raw": "http://localhost:8001/graphql","host": ["localhost"],"port": "8001","path": ["graphql"]}
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "2. Product Service (Port 8002)",
+      "item": [
+        {
+          "name": "REST API",
+          "item": [
+            {
+              "name": "GET All Products",
+              "request": {
+                "method": "GET",
+                "url": {"raw": "http://localhost:8002/api/products","host": ["localhost"],"port": "8002","path": ["api","products"]}
+              }
+            },
+            {
+              "name": "GET Product by ID",
+              "request": {
+                "method": "GET",
+                "url": {"raw": "http://localhost:8002/api/products/1","host": ["localhost"],"port": "8002","path": ["api","products","1"]}
+              }
+            },
+            {
+              "name": "POST Create Product",
+              "request": {
+                "method": "POST",
+                "header": [{"key": "Content-Type","value": "application/json"}],
+                "body": {"mode": "raw","raw": "{\n    \"name\": \"Sushi Salmon\",\n    \"description\": \"Enak\",\n    \"price\": 45000,\n    \"stock\": 50\n}"},
+                "url": {"raw": "http://localhost:8002/api/products","host": ["localhost"],"port": "8002","path": ["api","products"]}
+              }
+            },
+            {
+              "name": "PUT Update Product",
+              "request": {
+                "method": "PUT",
+                "header": [{"key": "Content-Type","value": "application/json"}],
+                "body": {"mode": "raw","raw": "{\n    \"price\": 50000,\n    \"stock\": 10\n}"},
+                "url": {"raw": "http://localhost:8002/api/products/1","host": ["localhost"],"port": "8002","path": ["api","products","1"]}
+              }
+            },
+            {
+              "name": "DELETE Product",
+              "request": {
+                "method": "DELETE",
+                "url": {"raw": "http://localhost:8002/api/products/1","host": ["localhost"],"port": "8002","path": ["api","products","1"]}
+              }
+            }
+          ]
+        },
+        {
+          "name": "GraphQL",
+          "item": [
+            {
+              "name": "Query: Get All Products",
+              "request": {
+                "method": "POST",
+                "body": {"mode": "graphql","graphql": {"query": "query {\n  products {\n    id\n    name\n    price\n    stock\n  }\n}"}},
+                "url": {"raw": "http://localhost:8002/graphql","host": ["localhost"],"port": "8002","path": ["graphql"]}
+              }
+            },
+            {
+              "name": "Query: Get Product by ID",
+              "request": {
+                "method": "POST",
+                "body": {"mode": "graphql","graphql": {"query": "query {\n  product(id: 1) {\n    id\n    name\n    price\n  }\n}"}},
+                "url": {"raw": "http://localhost:8002/graphql","host": ["localhost"],"port": "8002","path": ["graphql"]}
+              }
+            },
+            {
+              "name": "Mutation: Create Product",
+              "request": {
+                "method": "POST",
+                "body": {"mode": "graphql","graphql": {"query": "mutation {\n  createProduct(\n    name: \"Udon Spesial\"\n    description: \"Enak banget\"\n    price: 35000\n    stock: 20\n  ) {\n    id\n    name\n    price\n  }\n}"}},
+                "url": {"raw": "http://localhost:8002/graphql","host": ["localhost"],"port": "8002","path": ["graphql"]}
+              }
+            },
+            {
+              "name": "Mutation: Update Product",
+              "request": {
+                "method": "POST",
+                "body": {"mode": "graphql","graphql": {"query": "mutation {\n  updateProduct(\n    id: 1\n    price: 40000\n    stock: 15\n  ) {\n    id\n    name\n    price\n    stock\n  }\n}"}},
+                "url": {"raw": "http://localhost:8002/graphql","host": ["localhost"],"port": "8002","path": ["graphql"]}
+              }
+            },
+            {
+              "name": "Mutation: Delete Product",
+              "request": {
+                "method": "POST",
+                "body": {"mode": "graphql","graphql": {"query": "mutation {\n  deleteProduct(id: 1) {\n    id\n    name\n  }\n}"}},
+                "url": {"raw": "http://localhost:8002/graphql","host": ["localhost"],"port": "8002","path": ["graphql"]}
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "3. Order Service (Port 8003)",
+      "item": [
+        {
+          "name": "REST API",
+          "item": [
+            {
+              "name": "GET All Orders",
+              "request": {
+                "method": "GET",
+                "url": {"raw": "http://localhost:8003/api/orders","host": ["localhost"],"port": "8003","path": ["api","orders"]}
+              }
+            },
+            {
+              "name": "GET Order by ID",
+              "request": {
+                "method": "GET",
+                "url": {"raw": "http://localhost:8003/api/orders/1","host": ["localhost"],"port": "8003","path": ["api","orders","1"]}
+              }
+            },
+            {
+              "name": "POST Create Order",
+              "request": {
+                "method": "POST",
+                "header": [{"key": "Content-Type","value": "application/json"}],
+                "body": {"mode": "raw","raw": "{\n    \"user_id\": 11,\n    \"product_id\": 1,\n    \"quantity\": 2,\n    \"status\": \"pending\"\n}"},
+                "url": {"raw": "http://localhost:8003/api/orders","host": ["localhost"],"port": "8003","path": ["api","orders"]}
+              }
+            },
+            {
+              "name": "PUT Update Order",
+              "request": {
+                "method": "PUT",
+                "header": [{"key": "Content-Type","value": "application/json"}],
+                "body": {"mode": "raw","raw": "{\n    \"status\": \"completed\"\n}"},
+                "url": {"raw": "http://localhost:8003/api/orders/1","host": ["localhost"],"port": "8003","path": ["api","orders","1"]}
+              }
+            },
+            {
+              "name": "DELETE Order",
+              "request": {
+                "method": "DELETE",
+                "url": {"raw": "http://localhost:8003/api/orders/1","host": ["localhost"],"port": "8003","path": ["api","orders","1"]}
+              }
+            }
+          ]
+        },
+        {
+          "name": "GraphQL",
+          "item": [
+            {
+              "name": "Query: Get All Orders",
+              "request": {
+                "method": "POST",
+                "body": {"mode": "graphql","graphql": {"query": "query {\n  orders {\n    id\n    user_id\n    product_id\n    quantity\n    total_price\n    status\n  }\n}"}},
+                "url": {"raw": "http://localhost:8003/graphql","host": ["localhost"],"port": "8003","path": ["graphql"]}
+              }
+            },
+            {
+              "name": "Query: Get Order by ID",
+              "request": {
+                "method": "POST",
+                "body": {"mode": "graphql","graphql": {"query": "query {\n  order(id: 1) {\n    id\n    user_id\n    total_price\n    status\n  }\n}"}},
+                "url": {"raw": "http://localhost:8003/graphql","host": ["localhost"],"port": "8003","path": ["graphql"]}
+              }
+            },
+            {
+              "name": "Mutation: Create Order",
+              "request": {
+                "method": "POST",
+                "body": {"mode": "graphql","graphql": {"query": "mutation {\n  createOrder(\n    user_id: 11\n    product_id: 1\n    quantity: 2\n    total_price: 90000\n    status: \"pending\"\n  ) {\n    id\n    total_price\n    status\n  }\n}"}},
+                "url": {"raw": "http://localhost:8003/graphql","host": ["localhost"],"port": "8003","path": ["graphql"]}
+              }
+            },
+            {
+              "name": "Mutation: Update Order",
+              "request": {
+                "method": "POST",
+                "body": {"mode": "graphql","graphql": {"query": "mutation {\n  updateOrder(\n    id: 1\n    status: \"completed\"\n  ) {\n    id\n    status\n  }\n}"}},
+                "url": {"raw": "http://localhost:8003/graphql","host": ["localhost"],"port": "8003","path": ["graphql"]}
+              }
+            },
+            {
+              "name": "Mutation: Delete Order",
+              "request": {
+                "method": "POST",
+                "body": {"mode": "graphql","graphql": {"query": "mutation {\n  deleteOrder(id: 1) {\n    id\n  }\n}"}},
+                "url": {"raw": "http://localhost:8003/graphql","host": ["localhost"],"port": "8003","path": ["graphql"]}
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "4. Payment Service (Port 8004)",
+      "item": [
+        {
+          "name": "REST API",
+          "item": [
+            {
+              "name": "GET All Payments",
+              "request": {
+                "method": "GET",
+                "url": {"raw": "http://localhost:8004/api/payments","host": ["localhost"],"port": "8004","path": ["api","payments"]}
+              }
+            },
+            {
+              "name": "GET Payment by ID",
+              "request": {
+                "method": "GET",
+                "url": {"raw": "http://localhost:8004/api/payments/1","host": ["localhost"],"port": "8004","path": ["api","payments","1"]}
+              }
+            },
+            {
+              "name": "POST Create Payment",
+              "request": {
+                "method": "POST",
+                "header": [{"key": "Content-Type","value": "application/json"}],
+                "body": {"mode": "raw","raw": "{\n    \"order_id\": 1,\n    \"user_id\": 11,\n    \"amount\": 90000,\n    \"payment_method\": \"credit_card\"\n}"},
+                "url": {"raw": "http://localhost:8004/api/payments","host": ["localhost"],"port": "8004","path": ["api","payments"]}
+              }
+            },
+            {
+              "name": "PUT Update Payment",
+              "request": {
+                "method": "PUT",
+                "header": [{"key": "Content-Type","value": "application/json"}],
+                "body": {"mode": "raw","raw": "{\n    \"payment_status\": \"success\"\n}"},
+                "url": {"raw": "http://localhost:8004/api/payments/1","host": ["localhost"],"port": "8004","path": ["api","payments","1"]}
+              }
+            },
+            {
+              "name": "DELETE Payment",
+              "request": {
+                "method": "DELETE",
+                "url": {"raw": "http://localhost:8004/api/payments/1","host": ["localhost"],"port": "8004","path": ["api","payments","1"]}
+              }
+            }
+          ]
+        },
+        {
+          "name": "GraphQL",
+          "item": [
+            {
+              "name": "Query: Get All Payments",
+              "request": {
+                "method": "POST",
+                "body": {"mode": "graphql","graphql": {"query": "query {\n  payments {\n    id\n    order_id\n    amount\n    payment_method\n    payment_status\n  }\n}"}},
+                "url": {"raw": "http://localhost:8004/graphql","host": ["localhost"],"port": "8004","path": ["graphql"]}
+              }
+            },
+            {
+              "name": "Query: Get Payment by ID",
+              "request": {
+                "method": "POST",
+                "body": {"mode": "graphql","graphql": {"query": "query {\n  payment(id: 1) {\n    id\n    order_id\n    payment_status\n  }\n}"}},
+                "url": {"raw": "http://localhost:8004/graphql","host": ["localhost"],"port": "8004","path": ["graphql"]}
+              }
+            },
+            {
+              "name": "Mutation: Create Payment",
+              "request": {
+                "method": "POST",
+                "body": {"mode": "graphql","graphql": {"query": "mutation {\n  createPayment(\n    order_id: 1\n    user_id: 11\n    amount: 90000\n    payment_method: \"credit_card\"\n    payment_status: \"success\"\n  ) {\n    id\n    payment_status\n  }\n}"}},
+                "url": {"raw": "http://localhost:8004/graphql","host": ["localhost"],"port": "8004","path": ["graphql"]}
+              }
+            },
+            {
+              "name": "Mutation: Update Payment",
+              "request": {
+                "method": "POST",
+                "body": {"mode": "graphql","graphql": {"query": "mutation {\n  updatePayment(\n    id: 1\n    payment_status: \"failed\"\n  ) {\n    id\n    payment_status\n  }\n}"}},
+                "url": {"raw": "http://localhost:8004/graphql","host": ["localhost"],"port": "8004","path": ["graphql"]}
+              }
+            },
+            {
+              "name": "Mutation: Delete Payment",
+              "request": {
+                "method": "POST",
+                "body": {"mode": "graphql","graphql": {"query": "mutation {\n  deletePayment(id: 1) {\n    id\n  }\n}"}},
+                "url": {"raw": "http://localhost:8004/graphql","host": ["localhost"],"port": "8004","path": ["graphql"]}
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "5. Menu Service (Hasura - Port 8080)",
+      "item": [
+        {
+          "name": "Query: Get All Menus",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-hasura-admin-secret",
+                "value": "my-super-secret-key",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query {\n  menus {\n    id\n    name\n    price\n  }\n}",
+                "variables": ""
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/graphql",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["v1", "graphql"]
+            }
+          }
+        },
+        {
+          "name": "Mutation: Insert Menu",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-hasura-admin-secret",
+                "value": "my-super-secret-key",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "mutation {\n  insert_menus(objects: {name: \"Nasi Goreng Spesial\", price: 25000}) {\n    returning {\n      id\n      name\n      price\n    }\n  }\n}",
+                "variables": ""
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/graphql",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["v1", "graphql"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
